@@ -1,6 +1,8 @@
 function Thermostat() {
   this.DEF_TEMP = 20;
   this.MIN_TEMP = 10;
+  this.MAX_TEMP_PS_ON = 25;
+  this.MAX_TEMP_PS_OFF = 32;
   this._temperature = this.DEF_TEMP;
   this._powerSaving = true;
 }
@@ -10,6 +12,7 @@ Thermostat.prototype.showTemperature = function(){
 };
 
 Thermostat.prototype.up = function(){
+  if(this._temperature >= this.showMaxTemp()){ throw new Error('Maximum temperature reached');}
   this._temperature ++;
 };
 
@@ -26,6 +29,10 @@ Thermostat.prototype.turnPowerSavingOn = function() {
   this._powerSaving = true;
 };
 
-Thermostat.prototype.showPowerSaving = function() {
+Thermostat.prototype.isPowerSaving = function() {
   return this._powerSaving;
+};
+
+Thermostat.prototype.showMaxTemp = function(){
+  return this.isPowerSaving() ?  this.MAX_TEMP_PS_ON : this.MAX_TEMP_PS_OFF;
 };

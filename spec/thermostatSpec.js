@@ -41,23 +41,31 @@ describe('Thermostat', function(){
 
   it('power saving mode can be turned off', function(){
     thermostat.turnPowerSavingOff();
-    expect(thermostat.showPowerSaving()).toBe(false);
+    expect(thermostat.isPowerSaving()).toBe(false);
   });
 
   it('power saving mode can be turned on', function(){
     thermostat.turnPowerSavingOff();
     thermostat.turnPowerSavingOn();
-    expect(thermostat.showPowerSaving()).toBe(true);
+    expect(thermostat.isPowerSaving()).toBe(true);
   });
 
   it('throws error when max_temp with powersaving on', function() {
-    for(var i = 0; i < max_temp(); i++) { thermostat.up(); }
+    var diff_temp = thermostat.showMaxTemp() - thermostat.showTemperature();
+    for(var i = 0; i < diff_temp; i++) { thermostat.up(); }
     expect(up).toThrowError('Maximum temperature reached');
   });
 
   it('throws error when max_temp with powersaving off', function() {
     thermostat.turnPowerSavingOff();
-    for(var i = 0; i < max_temp(); i++) { thermostat.up(); }
+    var diff_temp = thermostat.showMaxTemp() - thermostat.showTemperature();
+    for(var i = 0; i < diff_temp; i++) { thermostat.up(); }
     expect(up).toThrowError('Maximum temperature reached');
+  });
+
+  it('resets temperature to ' + def_temp + ' when hitting reset button', function(){
+    thermostat.up();
+    thermostat.reset();
+    expect(thermostat.showTemperature()).toEqual(def_temp);
   });
 });
