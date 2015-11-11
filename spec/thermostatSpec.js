@@ -68,4 +68,19 @@ describe('Thermostat', function(){
     thermostat.reset();
     expect(thermostat.showTemperature()).toEqual(def_temp);
   });
+
+  it('returns green when temperature is under 18 degrees', function(){
+    thermostat._temperature = 17;
+    expect(thermostat.display).toEqual('green');
+  });
+
+  it('returns yellow when temperature is under 25 degrees', function(){
+    thermostat._temperature = 21;
+    expect(thermostat.display).toEqual('yellow');
+  });
+
+  it('returns red when temperature is over 25 degrees', function(){
+    thermostat._temperature = 26;
+    expect(thermostat.display).toEqual('red');
+  });
 });
