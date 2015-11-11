@@ -1,4 +1,4 @@
- //'use strict';
+'use strict';
 
 describe('Thermostat', function(){
   var thermostat;
@@ -71,16 +71,16 @@ describe('Thermostat', function(){
 
   it('returns green when temperature is under 18 degrees', function(){
     thermostat._temperature = 17;
-    expect(thermostat.display).toEqual('green');
+    expect(thermostat.display()).toEqual('low-usage');
   });
 
   it('returns yellow when temperature is under 25 degrees', function(){
     thermostat._temperature = 21;
-    expect(thermostat.display).toEqual('yellow');
+    expect(thermostat.display()).toEqual('medium-usage');
   });
 
   it('returns red when temperature is over 25 degrees', function(){
     thermostat._temperature = 26;
-    expect(thermostat.display).toEqual('red');
+    expect(thermostat.display()).toEqual('high-usage');
   });
 });

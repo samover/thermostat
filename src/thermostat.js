@@ -1,3 +1,5 @@
+'use strict';
+
 function Thermostat() {
   this.DEF_TEMP = 20;
   this.MIN_TEMP = 10;
@@ -5,6 +7,7 @@ function Thermostat() {
   this.MAX_TEMP_PS_OFF = 32;
   this._temperature = this.DEF_TEMP;
   this._powerSaving = true;
+  this.MEDIUM_ENERGY_USAGE_LIMIT = 18
 }
 
 Thermostat.prototype.showTemperature = function(){
@@ -39,4 +42,10 @@ Thermostat.prototype.showMaxTemp = function(){
 
 Thermostat.prototype.reset = function() {
   this._temperature = this.DEF_TEMP;
+};
+
+Thermostat.prototype.display = function(){
+  if(this.showTemperature() < this.MEDIUM_ENERGY_USAGE_LIMIT){ return 'low-usage';};
+  if (this.showTemperature() < this.MAX_TEMP_PS_ON) { return 'medium-usage'; };
+  return 'high-usage';
 };
