@@ -1,7 +1,6 @@
 $(document).ready(function() {
   thermostat = new Thermostat();
   displayReset();
-  powerSaving();
 
   $('#up').click(function() {
     thermostat.up();
@@ -20,21 +19,18 @@ $(document).ready(function() {
 
   $('#turnPowerSavingOff').click(function() {
     thermostat.turnPowerSavingOff();
-    powerSaving();
+    displayReset();
   });
 
   $('#turnPowerSavingOn').click(function() {
     thermostat.turnPowerSavingOn();
-    powerSaving();
+    displayReset();
   });
 
   function displayReset() {
     $('#showTemperature').text(thermostat.showTemperature());
     $('#display').attr('class', thermostat.display());
+    $('span#isPowerSaving').text(thermostat.isPowerSaving() ? 'ON' : 'OFF');
   }
 
-  function powerSaving() {
-   status = thermostat.isPowerSaving() ? 'ON' : 'OFF';
-   $('span#isPowerSaving').text(status);
-  };
 });
