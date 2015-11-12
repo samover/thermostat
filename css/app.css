@@ -1,6 +1,16 @@
 body {
-  setba hj  
+
+
 }
+
+.wrapper {
+  margin: 0 auto;
+  width: 960px;
+  height: 100vh;
+  background-image: url('../img/minions.jpg');
+  background-repeat: no-repeat;
+}
+
 #thermostat {
   width: 300px;
 }

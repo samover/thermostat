@@ -43,8 +43,8 @@ $(document).ready(function() {
     $('#showTemperature').text(thermostat.showTemperature());
     $('#display').attr('class', thermostat.display());
     $('span#isPowerSaving').text(thermostat.isPowerSaving() ? 'ON' : 'OFF');
-  //}
-  
+  }
+
   function displayWeather(city, country) {
       city = city || 'Rome';
       country = country || 'US';
