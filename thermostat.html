@@ -4,51 +4,12 @@
     <title>Thermostat</title>
     <script src='src/thermostat.js'></script>
     <script src='src/jquery.js'></script>
+    <script src='src/application.js'></script>
   </head>
 
   <body>
-    <script>
-$(document).ready(function() {
-  thermostat = new Thermostat();
-
-  $('p#showTemperature').text(thermostat.showTemperature());
-  $('span#isPowerSaving').text(function() {
-    if (thermostat.isPowerSaving()) { return 'ON' }
-    return 'OFF';
-  });
-
-  $('#up').click(function() { 
-    thermostat.up();
-    $('#showTemperature').text(thermostat.showTemperature()); 
-    } );
-
-  $('#down').click(function() { 
-    thermostat.down();
-    $('#showTemperature').text(thermostat.showTemperature()); 
-    } );
-
-  $('#reset').click(function() { 
-    thermostat.reset();
-    $('#showTemperature').text(thermostat.showTemperature()); 
-    } );
-
-  $('#turnPowerSavingOff').click(function() {
-    thermostat.turnPowerSavingOff();
-    $('span#isPowerSaving').text('OFF')
-  });
-
-  $('#turnPowerSavingOn').click(function() {
-    thermostat.turnPowerSavingOn();
-    $('span#isPowerSaving').text('ON')
-  });
-});
-    
-    
-    
-    
-    </script>
-    <div id='thermostat'> 
-      <div id='display'> 
+    <div id='thermostat'>
+      <div id='display'>
         <p id='showTemperature'></p>
         <p>Powersaving: <span id='isPowerSaving'></span></p>
       </div>
@@ -58,7 +19,7 @@ $(document).ready(function() {
       <button id='turnPowerSavingOff'>Powersaving Off</button>
       <button id='turnPowerSavingOn'>Powersaving On</button>
       <button id='reset'>Reset</button>
-    
+
     </div>
   </body>
 </html>
