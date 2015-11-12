@@ -1,12 +1,7 @@
 $(document).ready(function() {
   thermostat = new Thermostat();
-  $('div#display').css('background-color', 'yellow');
-
-  $('p#showTemperature').text(thermostat.showTemperature());
-  $('span#isPowerSaving').text(function() {
-    if (thermostat.isPowerSaving()) { return 'ON' }
-    return 'OFF';
-  });
+  displayReset();
+  powerSaving();
 
   $('#up').click(function() {
     thermostat.up();
@@ -25,29 +20,21 @@ $(document).ready(function() {
 
   $('#turnPowerSavingOff').click(function() {
     thermostat.turnPowerSavingOff();
-    $('span#isPowerSaving').text('OFF')
+    powerSaving();
   });
 
   $('#turnPowerSavingOn').click(function() {
     thermostat.turnPowerSavingOn();
-    $('span#isPowerSaving').text('ON')
+    powerSaving();
   });
 
   function displayReset() {
-    var colour;
     $('#showTemperature').text(thermostat.showTemperature());
-    if (thermostat.display() === 'low-usage') {
-      colour = 'green';
-    }
-
-    if (thermostat.display() === 'medium-usage') {
-      colour = 'yellow';
-    }
-
-    if (thermostat.display() === 'high-usage') {
-      colour = 'red';
-    }
-
-    $('div#display').css('background-color', colour);
+    $('#display').attr('class', thermostat.display());
   }
+
+  function powerSaving() {
+   status = thermostat.isPowerSaving() ? 'ON' : 'OFF';
+   $('span#isPowerSaving').text(status);
+  };
 });
